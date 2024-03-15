@@ -1,28 +1,24 @@
-{{ $data := $.Site.Data.xrp -}}
+{{ $data := $.Site.Data.xrpl -}}
 [METADATA]
 modified = {{ .Lastmod | time.Format "2006-01-02T15:04:05Z" }}
-{{ if $data.expires -}}
-expires = {{ $data.expires }}
-{{- end }}
+{{ if $data.expires -}} expires = {{ $data.expires }} {{- end }}
 
 {{ range $data.validators -}}
 [[VALIDATORS]]
-public_key = "{{ .public_key }}"
-attestation = "{{ .attestation }}"
-network = "{{ .network }}"
-owner_country = "{{ .owner_country }}"
-server_country = "{{ .server_country }}"
-unl = "{{ .unl }}"
+{{ if .public_key -}} public_key = "{{ .public_key }}" {{- end }}
+{{ if .attestation -}} attestation = "{{ .attestation }}" {{- end }}
+{{ if .network -}} network = "{{ .network }}" {{- end }}
+{{ if .owner_country -}} owner_country = "{{ .owner_country }}" {{- end }}
+{{ if .server_country -}} server_country = "{{ .server_country }}" {{- end }}
+{{ if .unl -}} unl = "{{ .unl }}" {{- end }}
 {{- end }}
 
 {{ range $data.servers -}}
 [[SERVERS]]
-public_key = "{{ .public_key }}"
-attestation = "{{ .attestation }}"
-network = "{{ .network }}"
-owner_country = "{{ .owner_country }}"
-server_country = "{{ .server_country }}"
-unl = "{{ .unl }}"
+{{ if .json_rpc -}} json_rpc = "{{ .json_rpc }}" {{- end }}
+{{ if .ws -}} ws = "{{ .ws }}" {{- end }}
+{{ if .peer -}} peer = "{{ .peer }}" {{- end }}
+{{ if .network -}} network = "{{ .network }}" {{- end }}
 {{- end }}
 
 {{ range $data.principals -}}
